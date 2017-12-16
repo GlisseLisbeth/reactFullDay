@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import ProductForm from './components/ProductForm';
-
+import Dialog from './components/Dialogo';
+import SearchBar from './components/SearchBar';
 var arrayProd = [
   {
     nombre: 'computadoras', precio: '1000'
@@ -17,6 +18,29 @@ var arrayProd = [
 ]
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      name: ''
+    }
+    this.onChangeValue = this.onChangeValue.bind(this);
+  }
+  onChangeValue(ev){
+    debugger;
+    var nombre = ev.target.value;
+
+    this.setState({
+      name: nombre
+    })
+  }
+  /*
+  componentShouldUpdate() {
+    return false;
+  }
+  */
+  componentDidMount() {
+    
+  }
   render() {
     return (
       
@@ -31,6 +55,14 @@ class App extends Component {
         <ProductForm 
           productos = {arrayProd}
         />
+        <br />
+        Nombre: <input type="text" placeholder = {'Ingrese nombre ...'} onChange={this.onChangeValue}/>
+        <br />
+        <br />
+        <label style={{textAlign:'center', color:'green'}}
+        >{this.state.name}</label>
+        < Dialog />
+        <SearchBar placeholderProp="Ingrese el texto a buscar" />
       </div>
     );
   }
